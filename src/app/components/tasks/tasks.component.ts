@@ -32,4 +32,19 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
   }
 
+  // This is the function that was emitted from task-item.components.ts
+  // The click event --> (onDeleteTask)="deleteTask()" <-- lives on the "app-task-item" declaration in task.comonenet.html 
+  // (task.component is the PARENT compnent of task-item.component)
+  deleteTask(task: Task) {
+    // Now we call the service method in task.service.ts
+    // taskService.deleteTask is an observable so we need to subscribe to it
+    // then inside the subscribe function, we do the thing that we want to do (in this case filter)
+    this.taskService.deleteTask(task).subscribe(() => 
+      this.tasks = this.tasks.filter(t => 
+        t.id !== task.id))
+    
+    console.log(`Delete: ${task.text}`);
+    
+  }
+
 }

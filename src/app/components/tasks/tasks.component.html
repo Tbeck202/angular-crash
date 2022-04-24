@@ -1,5 +1,11 @@
 <!-- Each Task will be a component, rather than just embedding each task into a <p> tag or whatever
     Using *ngFor, we loop over the "tasks", defined in task.component.ts (tasks: Task[] = [];) 
     [task]="task" is the property for eack task (I'm a little unclear as to the "why" for this right now. Maybe has something to do with the interface?)
+    (onDeleteTask) is the click event that was defined as an @Output emitter in tasks.component.ts
+    deleteTask(task) is the fuction that runs on click, defined in the PARENT component: tasks.component.ts
 -->
-<app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+<app-task-item 
+    *ngFor="let task of tasks" 
+    [task]="task" 
+    (onDeleteTask)="deleteTask(task)"
+></app-task-item>

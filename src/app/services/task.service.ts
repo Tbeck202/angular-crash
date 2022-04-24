@@ -27,7 +27,8 @@ export class TaskService {
 
   // here we've set the getTasks() method as an observable. (sort of like a function that returns a promise)
   // Declare the method to the left of the ":" and define it as an "Observable" to the right
-  // <Task[]> is the "type" which we defined in the "Task" interface
+  // <Task[]> is the "type" which we defined in the "Task" interface. 
+  // We're working with a Task array so we need the array[] type declaration
   getTasks(): Observable<Task[]> {
     // "this" refers to whatever we've called the moethod on (in this app it would be a task)
     // .http is what we declared in the constructor
@@ -35,6 +36,19 @@ export class TaskService {
     // We have to declare the type with "<Task[]>"
     // Then we pass in "this.apiUrl"
     return this.http.get<Task[]>(this.apiUrl)
+  }
+
+  // This is the delete method that we called from task.component 
+  // Declare the method to the left of the ":" and define it as an "Observable" to the right
+  // <Task> is the "type" which we defined in the "Task" interface. 
+  // We're working with a single Task so we don't need the array[] type declaration
+  deleteTask(task: Task): Observable<Task> {
+    // In here we're making a delete request to the defined url with a specific id
+    // We return the request to the component using this meathod (in this case, task.component.ts)
+    // remember this function is an observable so we're basically returning a promise
+    const url = `${this.apiUrl}/${task.id}`
+
+    return this.http.delete<Task>(url)
   }
 
 
