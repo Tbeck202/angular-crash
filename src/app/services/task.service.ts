@@ -3,6 +3,8 @@
 // My understanding is that essentially, this is just a set of reusable methods
 // So rather than defining methods specific to a single component, we create methods that can be used in multiple components
 // Services are helpful when calling api's and whatnot
+// The service is helpful because you can set up the api call and all the various functions in once place
+// then you can simply call the service methods from whatever components you want/need
 import { Injectable } from '@angular/core';
 // We need the HttpClient module to make api calls. It replaces fetch() or axios or whatever
 // Make sure to import/declare in app.module.ts
@@ -44,11 +46,19 @@ export class TaskService {
   // We're working with a single Task so we don't need the array[] type declaration
   deleteTask(task: Task): Observable<Task> {
     // In here we're making a delete request to the defined url with a specific id
-    // We return the request to the component using this meathod (in this case, task.component.ts)
-    // remember this function is an observable so we're basically returning a promise
+    // We return the observable with all the task info to the component using this meathod (in this case, task.component.ts)
+    // remember an observable is just like returning a promise
     const url = `${this.apiUrl}/${task.id}`
-
+    
     return this.http.delete<Task>(url)
+  }
+
+  // This is an implementation I wrote without the follow along
+  // I wanted to make it work on my own before seeing how the insructor did it so I could compare
+  setReminder(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task.id}`
+    
+    return this.http.get<Task>(url)
   }
 
 

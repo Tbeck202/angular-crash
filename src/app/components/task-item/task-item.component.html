@@ -1,4 +1,4 @@
-<div class="task">
+<div class="task" (dblclick)="setReminder(task)">
     <!--
         We have access to all the Task attrs defined in the interface because of "tasks: Task[] = [];" in "task.component.ts"
         (Or maybe from "@Input() task: Task;" in "task-item.component.ts", I'm a little unclear)

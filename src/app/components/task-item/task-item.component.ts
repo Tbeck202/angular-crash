@@ -20,6 +20,7 @@ export class TaskItemComponent implements OnInit {
   // We declare it as a "new" EventEmitter()
   // All of this is just the setup to then use the emitter in a function."onDelete()" in this case
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onSetReminder: EventEmitter<Task> = new EventEmitter();
 
   // Set the icon we imported as a proprty of the TaskItemComponent class
   faTimes = faTimes;
@@ -33,6 +34,12 @@ export class TaskItemComponent implements OnInit {
   // It's saying to task.comonenet.html "Hey! A thing was clicked. Now Please do whatever you're supposed to do when something is clicked"
   onDelete(task: Task) {
     this.onDeleteTask.emit(task)
+  }
+
+  // This is an implementation I wrote without the follow along
+  // I wanted to make it work on my own before seeing how the insructor did it so I could compare
+  setReminder(task: Task) {
+    this.onSetReminder.emit(task)
   }
 
 }

@@ -42,9 +42,23 @@ export class TasksComponent implements OnInit {
     this.taskService.deleteTask(task).subscribe(() => 
       this.tasks = this.tasks.filter(t => 
         t.id !== task.id))
+    // console.log(`Delete: ${task.text}`);
     
-    console.log(`Delete: ${task.text}`);
-    
+  }
+
+  // This is an implementation I wrote without the follow along
+  // I wanted to make it work on my own before seeing how the insructor did it so I could compare
+  setReminder(task: Task) {
+    this.taskService.setReminder(task).subscribe(() => {
+      const allTasks = document.querySelectorAll('.task')
+
+      allTasks.forEach((t) => {
+        console.log(t)
+        if(t.textContent?.includes(task.text)){
+          t.classList.toggle('task-reminder')
+        }
+      })
+    })
   }
 
 }
