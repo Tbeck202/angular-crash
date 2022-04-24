@@ -1,0 +1,2 @@
+<!-- 'color' is being passed in 'from header.component.html,' thru the '@Input() color: string;' declaration in 'button.component.ts' -->
+<button [ngStyle]="{'background-color': color}" class="btn" (click)="onClick()">{{text}}</button>

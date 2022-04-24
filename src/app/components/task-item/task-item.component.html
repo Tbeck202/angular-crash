@@ -1,0 +1,13 @@
+<div class="task">
+    <!--
+        We have access to all the Task attrs defined in the interface because of "tasks: Task[] = [];" in "task.component.ts"
+        (Or maybe from "@Input() task: Task;" in "task-item.component.ts", I'm a little unclear)
+
+        We're using from font awesome (https://github.com/FortAwesome/Font-Awesome) 
+        to make the red "X" on each task, so that's what the "fa-icon" tag is.
+        "faTimes" is a specific [icon] defined as a property in "task-item.component.ts"
+        [ngStyle] is just an inline style directive
+    -->
+    <h3>{{task.text}} <fa-icon [ngStyle]="{'color': 'red'}" [icon]="faTimes"></fa-icon></h3>
+    <p>{{task.day}}</p>
+</div>
