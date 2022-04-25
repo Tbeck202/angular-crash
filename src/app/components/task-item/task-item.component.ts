@@ -36,8 +36,6 @@ export class TaskItemComponent implements OnInit {
     this.onDeleteTask.emit(task)
   }
 
-  // This is an implementation I wrote without the follow along
-  // I wanted to make it work on my own before seeing how the insructor did it so I could compare
   setReminder(task: Task) {
     this.onSetReminder.emit(task)
   }

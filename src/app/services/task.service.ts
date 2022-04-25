@@ -8,10 +8,17 @@
 import { Injectable } from '@angular/core';
 // We need the HttpClient module to make api calls. It replaces fetch() or axios or whatever
 // Make sure to import/declare in app.module.ts
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import {Observable, of} from 'rxjs'
 import { Task } from '../Task';
 
+// These are the headers that we're passing in with our put/post requests
+const httpOptions =  {
+  // HttpHeaders is a module that we imported
+  headers: new HttpHeaders({
+    'content-type': 'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -53,12 +60,11 @@ export class TaskService {
     return this.http.delete<Task>(url)
   }
 
-  // This is an implementation I wrote without the follow along
-  // I wanted to make it work on my own before seeing how the insructor did it so I could compare
+  // Here we're updating the task object in the db
   setReminder(task: Task): Observable<Task> {
     const url = `${this.apiUrl}/${task.id}`
     
-    return this.http.get<Task>(url)
+    return this.http.put<Task>(url, task, httpOptions)
   }
 
 

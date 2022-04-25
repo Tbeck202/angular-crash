@@ -46,19 +46,13 @@ export class TasksComponent implements OnInit {
     
   }
 
-  // This is an implementation I wrote without the follow along
-  // I wanted to make it work on my own before seeing how the insructor did it so I could compare
+  // Since we're using [ngClass] on div.task in task-item.component.html
+  // all wee need to do is update the value of task.reminder betwwen trye/false
+  // the [ngClass] directive will handle the class toggling
+  // Then we call the setReminder() method in task.service.ts
   setReminder(task: Task) {
-    this.taskService.setReminder(task).subscribe(() => {
-      const allTasks = document.querySelectorAll('.task')
-
-      allTasks.forEach((t) => {
-        console.log(t)
-        if(t.textContent?.includes(task.text)){
-          t.classList.toggle('task-reminder')
-        }
-      })
-    })
+    task.reminder = !task.reminder
+    this.taskService.setReminder(task).subscribe()
   }
 
 }

@@ -1,4 +1,9 @@
-<div class="task" (dblclick)="setReminder(task)">
+
+<!-- 
+    [ngClass] is a directive for setting classes dynamically
+    Here we're saying set the class of reminder if task.reminder == true
+-->
+<div [ngClass]="{reminder: task.reminder }" class="task" (dblclick)="setReminder(task)">
     <!--
         We have access to all the Task attrs defined in the interface because of "tasks: Task[] = [];" in "task.component.ts"
         (Or maybe from "@Input() task: Task;" in "task-item.component.ts", I'm a little unclear)
