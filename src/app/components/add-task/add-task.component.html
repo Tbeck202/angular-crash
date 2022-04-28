@@ -1,0 +1,33 @@
+
+<!-- 
+    ****** Remember to import FormsModule in app.module.ts to work with forms ********
+    The onSubmit function is an output event that comes from the FormsModule called (ngSubmit). 
+    (ngSubmit) has some stuff built into it to make the form work the way we want, like event.preventDefault
+    which prevents the form from submitting (and refreshing the page), plus some other stuff apparently haha.
+    Anyways, onSubmit is an output event, meaning the data in the form will be sent to the AddTaskComponent method
+    in the component.ts
+-->
+<form class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+        <label for="text">Task</label>
+        <!-- 
+            [(ngModel)] is used to bind the value entered into the input to the property defined in
+            the AddTaskComponent of add-task.component.ts. The value inside the quotes to the right of the "=" sign
+            needs to match the "name" you define on the input (which should match the defined properties in the component.ts file).  
+            Note: This is two way binding. If we were to interpolate the "text" value into the html somewhere with {{ text }}, 
+            the value of "text" would populate into the interpolation as we type. It's being sent from the input, into the 
+            AddTaskComponent method, and then back into the html. You can determine two way binding because 
+            Square brakets "[]" mean "input" while parens "()" mean output.
+        -->
+        <input type="text" name="text" [(ngModel)]="text" id="text" placeholder="Add Task">
+    </div>
+    <div class="form-control">
+        <label for="day">Day &amp; Time</label>
+        <input type="text" name="day" [(ngModel)]="day" id="day" placeholder="Add Day &amp; Time">
+    </div>
+    <div class="form-control form-control-check">
+        <label for="reminder">Set Reminder</label>
+        <input type="checkbox" name="reminder" [(ngModel)]="reminder" id="reminder">
+    </div>
+    <input type="submit" value="Save Task" class="btn btn-block">
+</form>

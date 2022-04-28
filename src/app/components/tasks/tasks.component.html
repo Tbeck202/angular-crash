@@ -1,8 +1,16 @@
+
+
+<!-- The $event means that the value passed to the fuction will be defined in the event.
+In this case, it will be "task". We can't just pass in a task because we don't have a task property
+defined in TaskComponent. addTask() is the function defined in task.service.ts -->
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
+
 <!-- Each Task will be a component, rather than just embedding each task into a <p> tag or whatever
     Using *ngFor, we loop over the "tasks", defined in task.component.ts (tasks: Task[] = [];) 
     [task]="task" is the property for eack task (I'm a little unclear as to the "why" for this right now. Maybe has something to do with the interface?)
     (onDeleteTask) is the click event that was defined as an @Output emitter in tasks.component.ts
-    deleteTask(task) is the fuction that runs on click, defined in the PARENT component: tasks.component.ts
+    deleteTask(task) is the fuction that runs on click, defined in task.service.ts 
+    (I think... It could be tied to the method of the same name defined in the PARENT component: tasks.component.ts) 
 -->
 <app-task-item 
     *ngFor="let task of tasks" 
