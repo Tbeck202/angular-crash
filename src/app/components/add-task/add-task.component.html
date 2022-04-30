@@ -6,8 +6,9 @@
     which prevents the form from submitting (and refreshing the page), plus some other stuff apparently haha.
     Anyways, onSubmit is an output event, meaning the data in the form will be sent to the AddTaskComponent method
     in the component.ts
+    *ngIf is a built in directive that basically means "display this thing 'if' a defined thing is true"
 -->
-<form class="add-form" (ngSubmit)="onSubmit()">
+<form *ngIf="showAddTaskForm" class="add-form" (ngSubmit)="onSubmit()">
     <div class="form-control">
         <label for="text">Task</label>
         <!-- 

@@ -1,5 +1,16 @@
 <header>
     <h1>{{ title }}</h1>
 
-    <app-button color="green" text="Add" (btnClick)="toggleAddTask()"></app-button>
+    <!--
+        This button will only display when we're on the index route, 
+        thanks to the hasRoute() function in header.component.ts.
+        "color" and "text" are set to their values by a ternary operator
+        "showAddTaskForm" is a boolean property defined in header.component.ts 
+        if (false: red, close), if (true: green, add) -->
+    <app-button 
+        *ngIf="hasRoute('/')"
+        color="{{ showAddTaskForm ? 'red' : 'green' }}" 
+        text="{{ showAddTaskForm ? 'Close' : 'Add' }}" 
+        (btnClick)="toggleAddTask()"
+    ></app-button>
 </header>

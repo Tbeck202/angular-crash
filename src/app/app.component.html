@@ -1,5 +1,14 @@
 <div class="container">
     <app-header></app-header>
 
-    <app-tasks></app-tasks>
+    <!-- 
+        Here, we're replacing <app-tasks></app-tasks> 
+        with <router-outlet></router-outlet>.
+        We defined our index route as an empty string '' in app.module.ts and connected the route to the tasks component.
+        We've basically set the tasks component as the home page.
+    -->
+    <router-outlet></router-outlet>
 </div>
+
+<app-footer></app-footer>
+
